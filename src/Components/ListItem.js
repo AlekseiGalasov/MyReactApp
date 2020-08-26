@@ -38,7 +38,7 @@ const Button = styled.div`
             left: 0;
             width: 400px;
             height: 40px;
-            background-color: rgb(48,102,190);
+            background-color: rgb(17,157,164);
             text-align: center;
             cursor: pointer;
             border-bottom-left-radius: 25px;
@@ -47,7 +47,7 @@ const Button = styled.div`
             
 `
 
-export const ListItem = ({ itemList }) => (
+export const ListItem = ({ itemList, setOpenItem}) => (
     <List>
         {itemList.map(item => (
             <Item key={item.id}
@@ -55,7 +55,9 @@ export const ListItem = ({ itemList }) => (
             >
                 <p>{item.name}</p>
                 <p>{item.price.toLocaleString('ru-RU', {style: 'currency', currency:'EUR'})}</p>
-                <Button>+</Button>
+                <Button
+                  onClick={() => setOpenItem(item)}
+                >+</Button>
             </Item>
         ))}
     </List>

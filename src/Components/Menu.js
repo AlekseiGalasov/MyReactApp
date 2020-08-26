@@ -13,17 +13,26 @@ const SectionMenu = styled.section`
     padding: 30px;
 `
 
-export const Menu = () => (
+export const Menu = ({setOpenItem}) => {
+
+
+    return(
     <MenuStyled>
         <BannerStyle/>
         <SectionMenu>
             <h2>Burgers</h2>
-            <ListItem itemList={dbmenu.burger}></ListItem>
+            <ListItem 
+                itemList={dbmenu.burger}
+                setOpenItem={setOpenItem}
+            ></ListItem>
         </SectionMenu>
 
         <SectionMenu>
             <h2>Snacks / Drinks</h2>
-            <ListItem itemList={dbmenu.other}></ListItem>
+            <ListItem 
+                itemList={dbmenu.other}
+                setOpenItem={setOpenItem}
+            ></ListItem>
         </SectionMenu>
     </MenuStyled>
-);
+)};

@@ -8,4 +8,6 @@ export const BannerStyle = styled.div`
     background-image: url(${bannerImg});
     background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
+
 `;
