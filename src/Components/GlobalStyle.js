@@ -28,7 +28,6 @@ export const GlobalStyle = createGlobalStyle`
 	h1, h2, h3 {
 		padding: 0;
 		margin: 0;
-		font-family: 'Bangers', sans-serif;
 		
 	}
 	p {

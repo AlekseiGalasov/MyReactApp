@@ -7,6 +7,7 @@ import { BannerStyle } from './Banner.js';
 const MenuStyled = styled.main`
     background-color: #ccc;
     margin-top: 80px;
+    margin-left: 380px;
 `;
 
 const SectionMenu = styled.section`
@@ -26,7 +27,6 @@ export const Menu = ({setOpenItem}) => {
                 setOpenItem={setOpenItem}
             ></ListItem>
         </SectionMenu>
-
         <SectionMenu>
             <h2>Snacks / Drinks</h2>
             <ListItem 

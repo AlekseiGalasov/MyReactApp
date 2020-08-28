@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Button } from './ButtonCheckOut.js';
 
 const OverLay = styled.div`
     position:fixed;
@@ -34,15 +35,28 @@ const Banner = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    margin-bottom: 20px;
 `
 
-const H3 = styled.h3`
-    font-size: 30px;
+const Content = styled.section`
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: calc(100% - 200px);
+`;
+
+const HeaderContent = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
+    font-size: 25px;
     letter-spacing: 3px;
-    padding: 10px 0;
     color: black;
-`
+    font-weight: 700;
+`;
+
 const CloseBtn = styled.div`
     position: absolute;
     width: 50px;
@@ -57,32 +71,11 @@ const CloseBtn = styled.div`
     cursor: pointer;
     opacity: .5;
     transition: ease 0.5s;
+    color: white;
     :hover {
         opacity: 1;
-    }
-`
-
-const Button = styled.button`
-    padding: 15px 40px;
-    background-color: rgb(48,102,190);
-    border: none;
-    color: black;
-    font-weight: 500;
-    font-family: 'Roboto',sans-serif;
-    cursor: pointer;
-    letter-spacing: 2.5px;
-    border-radius: 45px;
-    box-shadow: 0px 8px 15px rgba(0,0,0,0.1);
-    transition: all 0.3s ease 0s;
-
-    :hover {
         background-color: #2EE59D;
-        box-shadow: 0px 15px 20px rgba(109, 157, 197, 0.4);
-        color: #fff;
-        transform: translateY(-4px);
-    }
-    :focus {
-        outline: none;
+        color: black;
     }
 `
 
@@ -100,9 +93,13 @@ export const ModalItem = ({openItem, setOpenItem}) => {
             <Modal>
                 <CloseBtn id='CloseBtn'>X</CloseBtn>
                 <Banner img={openItem.img}></Banner>
-                <H3>{openItem.name}</H3>
-                <H3>{openItem.price.toLocaleString('ru-RU', {style: 'currency', currency:'EUR'})}</H3>
-                <Button>Заказать!</Button>
+                    <Content>
+                        <HeaderContent>
+                            <h3>{openItem.name}</h3>
+                            <h3>{openItem.price.toLocaleString('ru-RU', {style: 'currency', currency:'EUR'})}</h3>
+                        </HeaderContent>
+                        <Button>Заказать!</Button>
+                    </Content>
             </Modal>
     </OverLay>
 )};
