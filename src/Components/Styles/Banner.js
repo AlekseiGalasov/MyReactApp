@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import bannerImg from "../images/banner.png";
+import bannerImg from '../../images/banner.png';
 
 
 export const BannerStyle = styled.div`

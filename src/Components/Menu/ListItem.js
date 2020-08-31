@@ -47,7 +47,7 @@ const Button = styled.div`
             
 `
 
-export const ListItem = ({ itemList, setOpenItem}) => (
+export const ListItem = ({ itemList, setOpenItem }) => (
     <List>
         {itemList.map(item => (
             <Item key={item.id}

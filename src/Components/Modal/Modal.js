@@ -79,15 +79,23 @@ const CloseBtn = styled.div`
     }
 `
 
-export const ModalItem = ({openItem, setOpenItem}) => {
+export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
     
-    function CloseModal(e) {
+    const CloseModal = e => {
         if(e.target.id === 'OverLay' || e.target.id === 'CloseBtn') {
             return setOpenItem(null);
         }
     }
 
-    if(openItem === null) return null; 
+    const order = {
+        ...openItem
+    };
+
+    const addToOrder = () => {
+        setOrders([...orders, order]);
+        setOpenItem(null);
+    }
+
     return(
     <OverLay id='OverLay' onClick={CloseModal}>
             <Modal>
@@ -98,7 +106,7 @@ export const ModalItem = ({openItem, setOpenItem}) => {
                             <h3>{openItem.name}</h3>
                             <h3>{openItem.price.toLocaleString('ru-RU', {style: 'currency', currency:'EUR'})}</h3>
                         </HeaderContent>
-                        <Button>Заказать!</Button>
+                        <Button onClick={addToOrder}>Заказать!</Button>
                     </Content>
             </Modal>
     </OverLay>

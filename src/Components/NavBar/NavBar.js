@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components'
-import logoImg from "../images/logo.svg";
+import logoImg from "../../images/logo.svg";
 
 const NavBarStyled = styled.header`
     position: fixed;
     top: 0;
     z-index: 100;
     height: 80px;
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
