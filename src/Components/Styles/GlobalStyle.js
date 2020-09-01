@@ -28,10 +28,37 @@ export const GlobalStyle = createGlobalStyle`
 	h1, h2, h3 {
 		padding: 0;
 		margin: 0;
-		
+		font-family: 'Bangers', sans-serif;
+	
 	}
 	p {
 		margin: 0;
 		padding: 0;
+	}
+
+	input {
+		padding: 0 10px;
+		&:focus {
+			outline: none;
+		}
+	}
+
+	input[type="number"] {
+		-moz-appearance: textfield;
+	}
+
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+	}
+
+	button {
+		cursor: pointer;
+	&:focus {
+		outline: none;
+	}
+	&:active {
+		background-color: red;
+	}
 	}
 `
