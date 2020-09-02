@@ -1,8 +1,9 @@
 
-
-
 export const totalPriceItems = (order) => {
-    return order.price * order.count;
+
+    const countToppings = order.topping && order.topping.filter(item => item.checked).length;
+    const priceTopping = (order.price * 0.1) * countToppings;
+    return (order.price + priceTopping) * order.count;
 }
 
 

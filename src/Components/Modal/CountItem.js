@@ -35,7 +35,7 @@ const MinusCountButton = styled.button`
 export function CountItem({count, setCount, onChange}) {
     return(
     <CountWrapper>
-        <span>Количество:</span>
+        <h3>Count:</h3>
         <div>
         <PlusCountButton disabled={count <= 1} onClick={() => setCount(count - 1)}>-</PlusCountButton>
         <CountInput type="number" min="1" max="99" value={count < 1 ? 1 : count && count > 99 ? 99 : count} onChange={onChange}></CountInput>

@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { Button } from '../Styles/ButtonCheckOut.js';
 import { CountItem } from './CountItem.js';
 import { useCount } from '../Hooks/useCount';
-import { totalPriceItems } from '../Functions/secondaryFunctions'
-import { formatCurrency } from '../Functions/secondaryFunctions'
+import { totalPriceItems } from '../Functions/secondaryFunctions';
+import { formatCurrency } from '../Functions/secondaryFunctions';
+import { Toppings } from './Toppings';
+import { useToppings } from '../Hooks/useToppings';
 
 const OverLay = styled.div`
     position:fixed;
@@ -91,6 +93,7 @@ const TotalPriceItem = styled.div`
 export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
     
     const Counter = useCount();
+    const toppings = useToppings(openItem);
 
     const CloseModal = e => {
         if(e.target.id === 'OverLay' || e.target.id === 'CloseBtn') {
@@ -101,6 +104,7 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
     const order = {
         ...openItem,
         count: Counter.count,
+        topping: toppings.toppings,
     };
 
     const addToOrder = () => {
@@ -118,8 +122,9 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
                             <h3>{formatCurrency(openItem.price)}</h3>
                         </HeaderContent>
                         <CountItem {...Counter}/>
+                        {openItem.toppings &&<Toppings  {...toppings}/>}
                         <TotalPriceItem>
-                            <span>Цена:</span>
+                            <h3>Price:</h3>
                             <span>{formatCurrency(totalPriceItems(order))}</span>
                         </TotalPriceItem>
                         <Button onClick={addToOrder}>Заказать!</Button>

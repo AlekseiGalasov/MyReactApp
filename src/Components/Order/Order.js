@@ -38,6 +38,9 @@ const Total = styled.div`
     & span:first-child {
         flex-grow: 1;
     }
+    & span:nth-child(2) {
+        margin-right: 25px;
+    }
 `;
 
 const EmptyList = styled.p`
@@ -46,22 +49,27 @@ const EmptyList = styled.p`
 
 export const Order = ( {orders} ) => {
     
+    console.log(orders);
+
     const total = orders.reduce((result, order)=>
     totalPriceItems(order) + result, 0)
 
+    const totalCounter = orders.reduce((result, order)=>
+    order.count + result, 0)
+
     return(
     <OrderStyled>
-        <OrderTitle>ВАШ ЗАКАЗ</OrderTitle>
+        <OrderTitle>YOUR ORDER</OrderTitle>
         <OrderContent>
             {orders.length ? 
             <OrderList> 
                 {orders.map(order => <OrderListItem order={order} />)}
             </OrderList> :
-            <EmptyList>Список заказов пуст</EmptyList>}
+            <EmptyList>Order list empty!</EmptyList>}
         </OrderContent>
         <Total>
-            <span>Итого</span>
-            <span></span>
+            <span>Final Count</span>
+            <span>{totalCounter}</span>
             <span>{formatCurrency(total)}</span>
         </Total>
         <Button>Оформить</Button>
