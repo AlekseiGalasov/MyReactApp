@@ -6,7 +6,10 @@ import { useCount } from '../Hooks/useCount';
 import { totalPriceItems } from '../Functions/secondaryFunctions';
 import { formatCurrency } from '../Functions/secondaryFunctions';
 import { Toppings } from './Toppings';
+import { Choices } from './Choices';
+import { useChoices } from '../Hooks/useChoices';
 import { useToppings } from '../Hooks/useToppings';
+
 
 const OverLay = styled.div`
     position:fixed;
@@ -94,7 +97,8 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
     
     const Counter = useCount();
     const toppings = useToppings(openItem);
-
+    const choices = useChoices();
+    
     const CloseModal = e => {
         if(e.target.id === 'OverLay' || e.target.id === 'CloseBtn') {
             return setOpenItem(null);
@@ -105,11 +109,13 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
         ...openItem,
         count: Counter.count,
         topping: toppings.toppings,
+        choices: choices.choice,
     };
 
     const addToOrder = () => {
         setOrders([...orders, order]);
         setOpenItem(null);
+
     }
     return(
     <OverLay id='OverLay' onClick={CloseModal}>
@@ -122,12 +128,16 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
                             <h3>{formatCurrency(openItem.price)}</h3>
                         </HeaderContent>
                         <CountItem {...Counter}/>
-                        {openItem.toppings &&<Toppings  {...toppings}/>}
+                        {openItem.toppings && <Toppings  {...toppings}/>}
+                        {openItem.choices && <Choices {...choices} openItem={openItem}/>}
                         <TotalPriceItem>
                             <h3>Price:</h3>
                             <span>{formatCurrency(totalPriceItems(order))}</span>
                         </TotalPriceItem>
-                        <Button onClick={addToOrder}>Заказать!</Button>
+                        <Button 
+                        onClick={addToOrder}
+                        disabled={openItem.choices && !choices.choice}
+                        >Заказать!</Button>
                     </Content>
             </Modal>
     </OverLay>

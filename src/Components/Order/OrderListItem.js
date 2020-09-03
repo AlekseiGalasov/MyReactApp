@@ -41,23 +41,25 @@ const ToppingItem = styled.div`
     padding: 5px;
     font-size: 12px;
     font-family: 'Balsamiq Sans', cursive;
+    color: #9A9A9A;
 `;
 
 
-export const OrderListItem = ({order}) => {
-    console.log(order.topping.map(top => (console.log(top))));
+export const OrderListItem = ({order, index, deleteItem}) => {
+    const topping = order.topping.filter(item => item.checked)
+    .map(item => item.name)
+    .join(', ')
+
     return(
         <>
         <OrderItemStyled>
-            <ItemName>{order.name}</ItemName>
+            <ItemName>{order.name} {order.choices}</ItemName>
             <span>{order.count}</span>
             <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
-            <TrashButton></TrashButton>
+            <TrashButton onClick={() => deleteItem(index)}></TrashButton>
         </OrderItemStyled>
         <ToppingsWrap>
-        {order.topping.map(top => {if(top.checked) {return ( 
-            <ToppingItem>{top.name}</ToppingItem>
-        )}})}
+            {topping && <ToppingItem>Tops:{topping}</ToppingItem>}
         </ToppingsWrap>
         </>
     )

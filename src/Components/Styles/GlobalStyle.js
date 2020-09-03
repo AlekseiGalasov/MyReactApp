@@ -58,7 +58,7 @@ export const GlobalStyle = createGlobalStyle`
 		outline: none;
 	}
 	&:active {
-		background-color: red;
+		background-color: #2EE59D;
 	}
 	}
 `

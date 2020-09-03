@@ -2,21 +2,24 @@ import React from 'react';
 import { AdittionalChoicesWrap, AdittionalChoicesInput, AdittionalChoicesLabel} from '../Styles/AdittionalChoices';
 
 
-export function Toppings({toppings, checkToppings}) {
+export function Choices({ openItem, choice, changeChoise}) {
     return(
         <>
-        <h3>Toppings: </h3>
+        <h3>Choices: </h3>
         <AdittionalChoicesWrap>
-            {toppings.map((item, i) => (
+            {openItem.choices.map((item, i) => {
+            return(
                 <AdittionalChoicesLabel key={i}>
                 <AdittionalChoicesInput 
-                    type="checkbox"
-                    checked={item.checked}
-                    onChange={() => checkToppings(i)}
+                    type="radio"
+                    name="choices"
+                    checked={choice === item}
+                    value={item}
+                    onChange={changeChoise}
                 ></AdittionalChoicesInput>
-                {item.name}
+                {item}
             </AdittionalChoicesLabel>
-            ))}
+            )})}
             
         </AdittionalChoicesWrap>
         </>

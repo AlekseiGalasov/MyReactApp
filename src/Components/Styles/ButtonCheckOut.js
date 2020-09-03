@@ -28,4 +28,8 @@ export const Button = styled.button`
     :focus {
         outline: none;
     }
+    :disabled {
+        background-color: #fff;
+        color: #bbb;
+    }
 `
