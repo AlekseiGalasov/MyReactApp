@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/database';
 import { GlobalStyle } from './Components/Styles/GlobalStyle.js';
 import { NavBar } from './Components/NavBar/NavBar.js';
 import { Menu } from './Components/Menu/Menu.js';
@@ -9,7 +10,7 @@ import { Order } from './Components/Order/Order.js';
 import { useOpenItem } from './Components/Hooks/useOpenitem.js';
 import { useOrders } from './Components/Hooks/useOrders.js'
 import { useAuth } from './Components/Hooks/useAuth'
-
+import { useTitle } from './Components/Hooks/useTitle'
 const firebaseConfig = {
 	apiKey: "AIzaSyDoCLd_t1BApCzZj81epfELyqqTWWcDgBE",
 	authDomain: "mcdonalds-ce46e.firebaseapp.com",
@@ -30,13 +31,17 @@ function App() {
 	const auth = useAuth(firebase.auth);
 	const openItem = useOpenItem();
 	const orders = useOrders();
-
-
+	useTitle(openItem.openItem);
+	
 	return (
 		<>
 		<GlobalStyle />
 		<NavBar {...auth}/>
-        <Order {...orders} {...openItem} {...auth}/>
+		<Order 
+		{...orders} 
+		{...openItem} 
+		{...auth}
+		firebaseDatabase={firebase.database}/>
 		<Menu {...openItem}/>
 		{openItem.openItem && <ModalItem {...openItem} {...orders}></ModalItem>}
 		</>

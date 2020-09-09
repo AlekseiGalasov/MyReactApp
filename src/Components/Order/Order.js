@@ -4,6 +4,10 @@ import { Button } from '../Styles/ButtonCheckOut.js';
 import { OrderListItem } from './OrderListItem.js'
 import { totalPriceItems } from '../Functions/secondaryFunctions'
 import { formatCurrency } from '../Functions/secondaryFunctions'
+import { projection } from '../Functions/secondaryFunctions'
+
+
+
 
 const OrderStyled = styled.div`
     position:fixed;
@@ -46,8 +50,29 @@ const EmptyList = styled.p`
     text-align:center;
 `;
 
-export const Order = ( {orders, setOrders, setOpenItem, authentication, logIn} ) => {
+const rulesData = {
+    name: ['name'],
+    price: ['price'],
+    count: ['count'],
+    topping: ['topping', arr => arr.filter(obj => obj.checked).map(obj => obj.name),
+        arr => arr.length ? arr : 'no toppings'],
+    choices: ['choices', item => item ? item : 'no choices'],
+}
+
+export const Order = ( {orders, setOrders, setOpenItem, authentication, logIn, firebaseDatabase} ) => {
     
+    const dataBase = firebaseDatabase();
+    const sendOrder = () => {
+        const newOrder = orders.map(projection(rulesData));
+        dataBase.ref('orders').push().set({
+            nameClient: authentication.displayName,
+            email: authentication.email,
+            order: newOrder,
+            date: new Date().toLocaleString(),
+        });
+        setOrders([]);
+    }
+
     const deleteItem = index => {
         const newOrders = [...orders];
         newOrders.splice(index, 1)
@@ -81,6 +106,6 @@ export const Order = ( {orders, setOrders, setOpenItem, authentication, logIn} )
             <span>{totalCounter}</span>
             <span>{formatCurrency(total)}</span>
         </Total>
-        <Button onClick={() => authentication ? console.log(...orders) : logIn()}>Оформить</Button>
+        <Button onClick={() => authentication ? sendOrder() : logIn()}>Оформить</Button>
     </OrderStyled>
 )};
