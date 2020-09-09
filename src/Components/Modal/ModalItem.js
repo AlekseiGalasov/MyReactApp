@@ -95,10 +95,12 @@ const TotalPriceItem = styled.div`
 
 export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
     
-    const Counter = useCount();
+    const Counter = useCount(openItem.count);
     const toppings = useToppings(openItem);
     const choices = useChoices();
+    const isEdit = openItem.index > -1;
     
+
     const CloseModal = e => {
         if(e.target.id === 'OverLay' || e.target.id === 'CloseBtn') {
             return setOpenItem(null);
@@ -111,6 +113,14 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
         topping: toppings.toppings,
         choices: choices.choice,
     };
+
+
+    const editOrder = () => {
+        const newOrders = [...orders];
+        newOrders[openItem.index] = order;
+        setOrders(newOrders);
+        setOpenItem(null);
+    }
 
     const addToOrder = () => {
         setOrders([...orders, order]);
@@ -134,10 +144,10 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
                             <h3>Price:</h3>
                             <span>{formatCurrency(totalPriceItems(order))}</span>
                         </TotalPriceItem>
-                        <Button 
-                        onClick={addToOrder}
+                        <Button id='OrderBtn'
+                        onClick={isEdit ? editOrder : addToOrder}
                         disabled={openItem.choices && !choices.choice}
-                        >Заказать!</Button>
+                        >{isEdit ? 'Изменить' : 'Заказать'}</Button>
                     </Content>
             </Modal>
     </OverLay>

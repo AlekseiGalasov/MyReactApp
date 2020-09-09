@@ -20,6 +20,9 @@ const PlusCountButton = styled.button`
     border: none;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
+    &:active {
+		background-color: #2EE59D;
+	}
 `;
 
 const MinusCountButton = styled.button`
@@ -28,11 +31,14 @@ const MinusCountButton = styled.button`
     border: none;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    &:active {
+		background-color: #2EE59D;
+	}
 
 `; 
 
 
-export function CountItem({count, setCount, onChange}) {
+export function CountItem({count, setCount, onChange, isEdit, openItem}) {
     return(
     <CountWrapper>
         <h3>Count:</h3>

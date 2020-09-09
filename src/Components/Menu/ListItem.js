@@ -40,12 +40,18 @@ const Button = styled.div`
             left: 0;
             width: 400px;
             height: 40px;
-            background-color: rgb(17,157,164);
+            background-color: rgb(48,102,190);
+            color: black;
             text-align: center;
             cursor: pointer;
             border-bottom-left-radius: 25px;
             border-bottom-right-radius: 25px;
-            opacity: .5;
+            transition: 0.3s;
+            
+        &:hover {
+            background-color: #2EE59D;
+            color: white;
+        }
             
 `
 

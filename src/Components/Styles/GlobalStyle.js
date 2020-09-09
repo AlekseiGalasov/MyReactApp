@@ -57,8 +57,5 @@ export const GlobalStyle = createGlobalStyle`
 	&:focus {
 		outline: none;
 	}
-	&:active {
-		background-color: #2EE59D;
-	}
 	}
 `
