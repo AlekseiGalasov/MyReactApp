@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import logoImg from "../../images/logo.svg";
+import { LogInLogOutBtn } from '../Styles/LogInLogOutBtn'
 
 const NavBarStyled = styled.header`
     position: fixed;
@@ -30,7 +31,7 @@ const ImgLogo = styled.img`
     height: auto;
 `
 
-const Login = styled.button`
+const User = styled.button`
     margin-right: 50px;
     padding: 15px 40px;
     background-color: rgb(48,102,190);
@@ -42,24 +43,22 @@ const Login = styled.button`
     letter-spacing: 2.5px;
     border-radius: 45px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease 0s;
-    :hover {
-        background-color: #2EE59D;
-        box-shadow: 0px 15px 20px rgba(109, 157, 197, 0.4);
-        color: #fff;
-        transform: translateY(-4px);
-    }
-    :focus {
-        outline: none;
-    }
+
 `
 
-export const NavBar = () => (
+export const NavBar = ({authentication, logIn, logOut}) => (
     <NavBarStyled>
         <Logo>
         <ImgLogo src={logoImg} alt='Logo'></ImgLogo>
         <H1>MrDonald's</H1>
         </Logo>
-        <Login>Войти</Login>
+        {authentication ?
+        <div>
+         <User>{authentication.displayName}</User>
+         <LogInLogOutBtn onClick={logOut}>Выйти</LogInLogOutBtn>
+         </div>
+         :
+         <LogInLogOutBtn onClick={logIn}>Войти</LogInLogOutBtn>}
+        
     </NavBarStyled>
 )

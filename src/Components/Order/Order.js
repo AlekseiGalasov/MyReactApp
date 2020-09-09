@@ -46,7 +46,7 @@ const EmptyList = styled.p`
     text-align:center;
 `;
 
-export const Order = ( {orders, setOrders, setOpenItem} ) => {
+export const Order = ( {orders, setOrders, setOpenItem, authentication, logIn} ) => {
     
     const deleteItem = index => {
         const newOrders = [...orders];
@@ -81,6 +81,6 @@ export const Order = ( {orders, setOrders, setOpenItem} ) => {
             <span>{totalCounter}</span>
             <span>{formatCurrency(total)}</span>
         </Total>
-        <Button>Оформить</Button>
+        <Button onClick={() => authentication ? console.log(...orders) : logIn()}>Оформить</Button>
     </OrderStyled>
 )};
