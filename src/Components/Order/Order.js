@@ -61,6 +61,7 @@ const rulesData = {
 
 export const Order = ( {orders, setOrders, setOpenItem, authentication, logIn, firebaseDatabase} ) => {
     
+
     const dataBase = firebaseDatabase();
     const sendOrder = () => {
         const newOrder = orders.map(projection(rulesData));
@@ -106,6 +107,6 @@ export const Order = ( {orders, setOrders, setOpenItem, authentication, logIn, f
             <span>{totalCounter}</span>
             <span>{formatCurrency(total)}</span>
         </Total>
-        <Button onClick={() => authentication ? sendOrder() : logIn()}>Оформить</Button>
+        <Button onClick={() => authentication ? orders.length > 0 ? sendOrder() : alert('Сперва выберите хоть 1 товар') : logIn()}>Оформить</Button>
     </OrderStyled>
 )};
