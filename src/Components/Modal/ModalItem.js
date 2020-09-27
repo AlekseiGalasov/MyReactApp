@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Button } from '../Styles/ButtonCheckOut.js';
 import { CountItem } from './CountItem.js';
@@ -9,20 +9,8 @@ import { Toppings } from './Toppings';
 import { Choices } from './Choices';
 import { useChoices } from '../Hooks/useChoices';
 import { useToppings } from '../Hooks/useToppings';
-
-
-const OverLay = styled.div`
-    position:fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background-color: rgba(0 ,0 ,0 , .5);
-    z-index: 100;
-`
+import { OverLay, CloseBtn} from '../Styles/ModalStyle'
+import { Context } from '../Functions/context'
 
 const Modal = styled.div`
     width: 600px;
@@ -66,35 +54,18 @@ const HeaderContent = styled.div`
     font-weight: 700;
 `;
 
-const CloseBtn = styled.div`
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: rgb(17,157,164);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    right: 20px;
-    top: 20px;
-    cursor: pointer;
-    opacity: .5;
-    transition: ease 0.5s;
-    color: white;
-    :hover {
-        opacity: 1;
-        background-color: #2EE59D;
-        color: black;
-    }
-`
-
 const TotalPriceItem = styled.div`
     display:flex;
     justify-content: space-between;
 `;
 
-export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
+export const ModalItem = () => {
     
+    const {
+        openItem : {openItem, setOpenItem},
+        orders : {orders, setOrders}
+    } = useContext(Context);
+
     const Counter = useCount(openItem.count);
     const toppings = useToppings(openItem);
     const choices = useChoices();
@@ -127,6 +98,7 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
         setOpenItem(null);
 
     }
+
     return(
     <OverLay id='OverLay' onClick={CloseModal}>
             <Modal>

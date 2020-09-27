@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ListItem } from './ListItem.js';
 import { BannerStyle } from '../Styles/Banner.js';
 import { useFetch } from '../Hooks/useFetch';
 import { Preloader } from '../Menu/Preloader';
+import { Context } from '../Functions/context'
 
 const MenuStyled = styled.main`
     background-color: #ccc;
@@ -15,8 +16,8 @@ const SectionMenu = styled.section`
     padding: 30px;
 `
 
-export const Menu = ({setOpenItem}) => {
-
+export const Menu = () => {
+    const {openItem : {setOpenItem}} = useContext(Context)
     const res = useFetch()
     const dbmenu = res.response
 
