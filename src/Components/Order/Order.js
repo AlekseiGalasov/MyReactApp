@@ -6,6 +6,7 @@ import { totalPriceItems } from '../Functions/secondaryFunctions'
 import { formatCurrency } from '../Functions/secondaryFunctions'
 import {Total, OrderTitle} from '../Styles/ModalStyle'
 import { Context } from '../Functions/context'
+import { device } from '../Styles/devices'
 
 const OrderStyled = styled.div`
     position:fixed;
@@ -13,17 +14,37 @@ const OrderStyled = styled.div`
     height: calc(100% - 80px);
     left: 0;
     padding:20px;
-    min-width: 380px;
+    width: 380px;
+    max-width: 380px;
     box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
+
+    @media ${device.laptopL} {
+        max-width: 350px;
+    }
+    @media ${device.laptop} {
+        max-width: 280px;
+        padding: 10px;
+    }
+    @media ${device.tablet} {
+        width: 100%;
+        height: 200px;
+        background-color: white;
+        min-width: 100%;
+        z-index: 100;
+        padding: 5px;
+
+    }
 `;
 
 const OrderContent = styled.div`
     flex-grow: 1;
     padding: 10px;
     overflow-y: scroll;
-
+    @media ${device.tablet} {
+        padding: 5px 0px;
+    }
 `;
 
 const OrderList = styled.ul`
@@ -32,6 +53,12 @@ const OrderList = styled.ul`
 
 const EmptyList = styled.p`
     text-align:center;
+    @media ${device.laptop} {
+            font-size: 14px;
+    }
+    @media ${device.tablet} {
+            font-size: 12px;
+    }
 `;
 
 
@@ -57,7 +84,7 @@ export const Order = () => {
 
     return(
     <OrderStyled>
-        <OrderTitle>YOUR ORDER</OrderTitle>
+        <OrderTitle>ВАШ ЗАКАЗ</OrderTitle>
         <OrderContent>
             {orders.length ? 
             <OrderList> 
@@ -69,12 +96,12 @@ export const Order = () => {
                 setOpenItem={setOpenItem}
                  />)}
             </OrderList> :
-            <EmptyList>Order list empty!</EmptyList>}
+            <EmptyList>Список заказов пуст!</EmptyList>}
         </OrderContent>
         {orders.length ? 
         <>
         <Total>
-            <span>Final Count</span>
+            <span>Конечная сумма</span>
             <span>{totalCounter}</span>
             <span>{formatCurrency(total)}</span>
         </Total>

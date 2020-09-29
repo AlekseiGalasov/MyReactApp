@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from './devices'
 
 export const Total = styled.div`
 display: flex;
@@ -9,10 +10,26 @@ padding: 30px;
 & span:nth-child(2) {
     margin-right: 25px;
 }
+    @media ${device.laptopL} {
+            font-size: 16px;
+    }
+    @media ${device.laptop} {
+            font-size: 14px;
+    }
+    @media ${device.tablet} {
+            padding: 5px;
+            font-size: 10px;
+    }
 `;
 
 export const OrderTitle = styled.h2`
     text-align: center;
+    @media ${device.laptop} {
+            font-size: 18px;
+    }
+    @media ${device.tablet} {
+            font-size: 16px;
+    }
 `;
 
 export const CloseBtn = styled.div`

@@ -11,6 +11,7 @@ import { useChoices } from '../Hooks/useChoices';
 import { useToppings } from '../Hooks/useToppings';
 import { OverLay, CloseBtn} from '../Styles/ModalStyle'
 import { Context } from '../Functions/context'
+import { device } from '../Styles/devices'
 
 const Modal = styled.div`
     width: 600px;
@@ -23,6 +24,15 @@ const Modal = styled.div`
     align-items: center;
     flex-direction: column;
     position: relative;
+    @media ${device.laptopL} {
+        width: 550px;
+        height: 500px;
+    }
+    @media ${device.tablet} {
+        width: 90%;
+        height: 400px;
+    }
+    
 `
 
 const Banner = styled.div`
@@ -32,6 +42,12 @@ const Banner = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    @media ${device.laptopL} {
+        height: 180px;
+    }
+    @media ${device.tablet} {
+        height: 100px;
+    }
 `
 
 const Content = styled.section`
@@ -42,6 +58,13 @@ const Content = styled.section`
     justify-content: space-between;
     height: calc(100% - 200px);
     color: black;
+    @media ${device.laptopL} {
+        padding: 15px;
+    }
+    @media ${device.tablet} {
+        padding: 10px;
+        height: calc(100% -100px);
+    }
 `;
 
 const HeaderContent = styled.div`
@@ -52,11 +75,30 @@ const HeaderContent = styled.div`
     letter-spacing: 3px;
     color: black;
     font-weight: 700;
+    @media ${device.laptopL} {
+        font-size: 20px;
+        padding: 10px 0;
+    }
+    @media ${device.tablet} {
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
+
 `;
 
 const TotalPriceItem = styled.div`
     display:flex;
     justify-content: space-between;
+    @media ${device.laptopL} {
+        font-size: 18px;
+        letter-spacing: 2px;
+        padding: 10px 0;
+    }
+    @media ${device.tablet} {
+        font-size: 14px;
+        letter-spacing: 2px;
+        padding: 10px 0;
+    }
 `;
 
 export const ModalItem = () => {

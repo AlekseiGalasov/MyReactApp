@@ -1,16 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
+import { device } from '../Styles/devices'
 
 
 const CountWrapper = styled.div`
     display: flex;
     justify-content: space-between;
+    @media ${device.tablet} {
+        flex-direction: column;
+        text-align: center;
+        font-size: 14px;
+        & + h3 {
+            font-size: 14px;
+            padding: 10px 0;
+            text-align: center;
+        }
+        & > h3 {
+            padding: 10px 0;
+            font-size: 14px;
+        }
+    }
 `;
 
 const CountInput = styled.input`
     width:100px;
     height: 40px;
     border: none;
+    @media ${device.tablet} {
+        height: 30px;
+        width:80px;
+    }
 
 `;
 
@@ -23,6 +42,10 @@ const PlusCountButton = styled.button`
     &:active {
 		background-color: #2EE59D;
 	}
+    @media ${device.tablet} {
+        height: 30px;
+        width:35px;
+    }
 `;
 
 const MinusCountButton = styled.button`
@@ -34,7 +57,10 @@ const MinusCountButton = styled.button`
     &:active {
 		background-color: #2EE59D;
 	}
-
+    @media ${device.tablet} {
+        height: 30px;
+        width:35px;
+    }
 `; 
 
 

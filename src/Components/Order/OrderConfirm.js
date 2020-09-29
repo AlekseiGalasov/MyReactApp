@@ -42,6 +42,7 @@ const rulesData = {
             email: authentication.email,
             order: newOrder,
             date: new Date().toLocaleString(),
+            totalPrice: total.toFixed(2),
         });
         setOrders([]);
         setOpenOrderConfirm(false)

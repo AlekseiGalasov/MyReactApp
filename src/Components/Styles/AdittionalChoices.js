@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../Styles/devices'
 
 
 export const AdittionalChoicesWrap = styled.div`
@@ -11,6 +12,12 @@ export const AdittionalChoicesWrap = styled.div`
 export const AdittionalChoicesLabel = styled.label`
     cursor: pointer;
     display: block;
+    @media ${device.laptopL} {
+        font-size: 16px;
+    }
+    @media ${device.tablet} {
+        font-size: 14px;
+    }
 `;
 export const AdittionalChoicesInput = styled.input`
     cursor: pointer;

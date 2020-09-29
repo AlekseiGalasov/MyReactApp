@@ -5,15 +5,36 @@ import { BannerStyle } from '../Styles/Banner.js';
 import { useFetch } from '../Hooks/useFetch';
 import { Preloader } from '../Menu/Preloader';
 import { Context } from '../Functions/context'
+import { device } from '../Styles/devices'
+
 
 const MenuStyled = styled.main`
     background-color: #ccc;
     margin-top: 80px;
     margin-left: 380px;
+    @media ${device.laptopL} {
+        margin-left: 350px;
+    }
+    @media ${device.laptop} {
+        margin-left: 280px;
+    }
+    @media ${device.tablet} {
+        margin-left: 0;
+        margin-top: 280px;
+    }
 `;
 
 const SectionMenu = styled.section`
     padding: 30px;
+    @media ${device.laptopL} {
+        padding: 15px;
+    }
+    @media ${device.laptop} {
+        padding: 10px;
+    }
+    @media ${device.tablet} {
+        padding: 10px;
+    }
 `
 
 export const Menu = () => {

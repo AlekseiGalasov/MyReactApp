@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import bannerImg from '../../images/banner.png';
+import { device } from './devices'
 
 
 export const BannerStyle = styled.div`
@@ -10,4 +11,10 @@ export const BannerStyle = styled.div`
     background-position: center;
     background-size: cover;
 
+    @media ${device.laptop} {
+            height: 150px;
+    }
+    @media ${device.tablet} {
+            display: none;
+    }
 `;

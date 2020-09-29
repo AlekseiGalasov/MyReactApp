@@ -24,12 +24,11 @@ const sendOrderEmail = data => {
                 <h3>Ваш заказ:</h3>
                 <ul>
                     ${data.order.map(({name, count, price, topping, choices}) => (
-                        `<li>${name} ${choices === "no choices" ? '' : choices} - ${count}шт. ${topping === "no toppings" ? ''  : 'Добавки: ' + topping} , цена ${price * count} евро.</li>`)
+                        `<li>${name} ${choices === "no choices" ? '' : choices} - ${count}шт. ${topping === "no toppings" ? ''  : 'Добавки: ' + topping} , цена ${topping === "no toppings" ? (price * count).toFixed(2) :((price + (topping.length *  (price * 0.1))) * count).toFixed(2)} евро.</li>`)
                     )}
                 </ul>
-                <p>Итого: ${data.order.reduce((sum, item) => 
-                    sum + (item.price + item.count), 0 )} евро.</p>
-                <small>Приятного аппетита</small>
+                <p>Итого: ${(data.totalPrice).toFixed(2)} евро.</p>
+                <small>P.S. привет максимка!</small>
 
             </div>
         `,

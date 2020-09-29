@@ -3,11 +3,20 @@ import styled from 'styled-components';
 import trashImage from '../../images/rubbish.svg';
 import { totalPriceItems } from '../Functions/secondaryFunctions'
 import { formatCurrency } from '../Functions/secondaryFunctions'
+import { device } from '../Styles/devices'
 
 
 const OrderItemStyled = styled.li`
     display: flex;
     margin: 5px 0;
+    @media ${device.laptop} {
+        font-size: 14px;
+        line-height: 25px;
+    }
+    @media ${device.tablet} {
+        font-size: 12px;
+        line-height: 24px;
+    }
 `;
 
 const TrashButton = styled.button`
@@ -42,6 +51,15 @@ const ToppingItem = styled.div`
     font-size: 12px;
     font-family: 'Balsamiq Sans', cursive;
     color: #9A9A9A;
+
+    @media ${device.laptop} {
+        font-size: 11px;
+        padding: 3px;
+    }
+    @media ${device.tablet} {
+        font-size: 9px;
+        padding: 1px;
+    }
 `;
 
 
@@ -54,13 +72,14 @@ export const OrderListItem = ({order, index, deleteItem, setOpenItem }) => {
     return(
         <>
         <OrderItemStyled onClick={(e) => e.target !== refDeleteButton.current && setOpenItem({...order, index})}>
-            <ItemName>{order.name} {order.choices}</ItemName>
+            <ItemName>{order.name} </ItemName>
             <span>{order.count}</span>
             <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
             <TrashButton ref={refDeleteButton} onClick={() => deleteItem(index)}></TrashButton>
         </OrderItemStyled>
         <ToppingsWrap>
-            {topping && <ToppingItem>Tops:{topping}</ToppingItem>}
+            {order.choices && <ToppingItem>Выбор: {order.choices}</ToppingItem>}
+            {topping && <ToppingItem>Добавки:{topping}</ToppingItem>}
         </ToppingsWrap>
         </>
     )

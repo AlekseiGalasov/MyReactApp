@@ -1,5 +1,7 @@
 
 import styled from 'styled-components';
+import { device } from './devices'
+
 
 export const LogInLogOutBtn = styled.button`
 margin-right: 50px;
@@ -23,4 +25,11 @@ transition: all 0.3s ease 0s;
 :focus {
     outline: none;
 }
+
+@media ${device.tablet} {
+            padding: 10px 10px;
+            letter-spacing: 1.5px;
+            margin-right: 0;
+            font-size: 10px;
+    }
 `
